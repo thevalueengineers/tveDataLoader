@@ -12,6 +12,9 @@ License: GPL-3
 Imports: 
     magrittr,
     haven,
-    stringr
+    stringr,
+    purrr,
+    tibble,
+    labelled
 Encoding: UTF-8
 LazyData: true
