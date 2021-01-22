@@ -1,4 +1,8 @@
-## extract value labels from tibble read in via tveDataLoader::read_sav
+#' Extract value labels from a tibble with haven_labelled columns
+#'
+#' @param datafile A tibble created by reading in an SPSS .sav file using the haven package
+#'
+#' @export
 get_valLabels <- function(datafile) {
   purrr::map(datafile, labelled::val_labels) %>%
     unlist() %>%
