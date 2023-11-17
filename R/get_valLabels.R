@@ -4,7 +4,7 @@
 #'
 #' @export
 get_valLabels <- function(datafile) {
-  purrr::map(test_dat, labelled::val_labels) |>
+  purrr::map(datafile, labelled::val_labels) |>
     purrr::map(tibble::enframe, name = "value label") |>
     purrr::map_dfr(~if(nrow(.x) > 0) {.x} else {NULL}, .id = "variable") |>
     dplyr::select(variable, value, `value label`)
