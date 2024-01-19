@@ -2,5 +2,6 @@
 % Please edit documentation in R/tveDataLoader.R
 \docType{package}
 \name{tveDataLoader}
+\alias{-package}
 \alias{tveDataLoader}
 \title{What the Package Does (one line, title case)}

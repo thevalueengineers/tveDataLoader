@@ -3,4 +3,5 @@
 export(get_valLabels)
 export(get_varLabels)
 export(read_sav)
+export(tve_path)
 import(magrittr)
