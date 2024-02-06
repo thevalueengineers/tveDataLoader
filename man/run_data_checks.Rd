@@ -4,7 +4,13 @@
 \alias{run_data_checks}
 \title{Data checking functions}
 \usage{
-run_data_checks(data, vars = NULL, unique_id = TRUE, quiet = FALSE)
+run_data_checks(
+  data,
+  vars = NULL,
+  unique_id = TRUE,
+  weight = TRUE,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{data}{Data frame to be tested.}
@@ -13,7 +19,10 @@ run_data_checks(data, vars = NULL, unique_id = TRUE, quiet = FALSE)
 data}
 
 \item{unique_id}{Logical. Whether to run the unique_id check. Default is
-TRUE.}
+`TRUE`.}
+
+\item{weight}{Either a logical to check for a weight var, or the name of the
+weight variable on which to run a summary. Default is `TRUE`.}
 
 \item{quiet}{Whether to display messages in the console. Default is true.}
 }

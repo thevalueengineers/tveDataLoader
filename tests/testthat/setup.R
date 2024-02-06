@@ -20,4 +20,5 @@ test_dat <- tibble::tibble(
     ),
     label = "Test label"
   )
-)
+) |>
+  tibble::add_column(weight = 1)
