@@ -4,13 +4,16 @@
 \alias{run_data_checks}
 \title{Data checking functions}
 \usage{
-run_data_checks(data, vars = NULL, quiet = FALSE)
+run_data_checks(data, vars = NULL, unique_id = TRUE, quiet = FALSE)
 }
 \arguments{
 \item{data}{Data frame to be tested.}
 
 \item{vars}{Optional character vector of variable names to be tested within
 data}
+
+\item{unique_id}{Logical. Whether to run the unique_id check. Default is
+TRUE.}
 
 \item{quiet}{Whether to display messages in the console. Default is true.}
 }

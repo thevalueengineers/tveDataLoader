@@ -9,6 +9,12 @@ test_that("input validation works", {
   expect_error(run_data_checks(test_dat, 1:3))
   expect_error(run_data_checks(test_dat, list(letters[1:3])))
   expect_no_error(run_data_checks(test_dat, c("q1", "q1.1"), quiet = TRUE))
+  # unique_id should be logical
+  expect_error(run_data_checks(test_dat, unique_id = "yes"))
+  expect_no_error(run_data_checks(test_dat, unique_id = TRUE, quiet = TRUE))
+  # quiet should be logical
+  expect_error(run_data_checks(test_dat, quiet = "yes"))
+  expect_no_error(run_data_checks(test_dat, unique_id = TRUE, quiet = TRUE))
 })
 
 test_that("unique IDs checks", {
@@ -23,5 +29,10 @@ test_that("unique IDs checks", {
       quiet = TRUE
     )$unique_id,
     c("respid", "respid2")
+  )
+  # should say if check is not run
+  expect_equal(
+    run_data_checks(data, unique_id = FALSE, quiet = TRUE)$unique_id,
+    "Check not run"
   )
 })
