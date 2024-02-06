@@ -27,7 +27,6 @@ run_data_checks <- function(data,
 
   # if no vars provided then use all ----
   if(is.null(vars)) {vars <- names(data)}
-  # names(vars) <- vars
 
   # check for a unique ID ----
   if(!quiet) message("Checking for unique ID")
