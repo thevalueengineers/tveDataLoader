@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Load and perform basic data checks in a TVE manner.
+Load spss .sav data and perform basic data checks in a TVE manner.
 
 ## Installation
 
