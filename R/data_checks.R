@@ -5,7 +5,7 @@
 #'
 #' @param data Data frame to be tested.
 #' @param vars Optional character vector of variable names to be tested within
-#'   data
+#'   data. Default is NULL, i.e. test all variables.
 #' @param unique_id Logical. Whether to run the unique_id check. Default is
 #'   `TRUE`.
 #' @param weight Either a logical to check for a weight var, or the name of the

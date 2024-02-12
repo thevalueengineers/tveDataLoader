@@ -16,7 +16,7 @@ run_data_checks(
 \item{data}{Data frame to be tested.}
 
 \item{vars}{Optional character vector of variable names to be tested within
-data}
+data. Default is NULL, i.e. test all variables.}
 
 \item{unique_id}{Logical. Whether to run the unique_id check. Default is
 `TRUE`.}
