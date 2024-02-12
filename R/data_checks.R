@@ -12,6 +12,14 @@
 #'   weight variable on which to run a summary. Default is `TRUE`.
 #' @param quiet Whether to display messages in the console. Default is true.
 #'
+#' @returns List of check outcomes:
+#'  \itemize{
+#'   \item{"unique_id": Names of variables identified as possible unique identifiers}
+#'   \item{"weight_var": Names of variables identified as possible weight variables}
+#'   \item{"weight_summary": Tibble of summary stats on possible weight variables}
+#'   \item{"vars_check": Character vector of variables in `vars` that are NOT present in `data`}
+#'   }
+#'
 #' @export
 run_data_checks <- function(data,
                             vars = NULL,
