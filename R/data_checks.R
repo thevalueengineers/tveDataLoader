@@ -14,6 +14,7 @@
 #'
 #' @returns List of check outcomes:
 #'  \itemize{
+#'   \item{"data": `data` passed through}
 #'   \item{"unique_id": Names of variables identified as possible unique identifiers}
 #'   \item{"weight_var": Names of variables identified as possible weight variables}
 #'   \item{"weight_summary": Tibble of summary stats on possible weight variables}
@@ -81,6 +82,7 @@ run_data_checks <- function(data,
   # return check results ----
   return(
     list(
+      data = data,
       unique_id = unique_id,
       weight_var = weight_var,
       weight_summary = weight_summary,

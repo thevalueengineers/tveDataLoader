@@ -29,6 +29,7 @@ weight variable on which to run a summary. Default is `TRUE`.}
 \value{
 List of check outcomes:
  \itemize{
+  \item{"data": `data` passed through}
   \item{"unique_id": Names of variables identified as possible unique identifiers}
   \item{"weight_var": Names of variables identified as possible weight variables}
   \item{"weight_summary": Tibble of summary stats on possible weight variables}
