@@ -22,3 +22,9 @@ test_dat <- tibble::tibble(
   )
 ) |>
   tibble::add_column(weight = 1)
+
+new_dat_var_labels <- tibble::tribble(
+  ~variable, ~label,
+  "q1", "q1 label",
+  "q1.1", "q1.1 label"
+)
