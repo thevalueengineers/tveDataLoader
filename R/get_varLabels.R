@@ -4,7 +4,12 @@
 #'
 #' @export
 get_varLabels <- function(datafile) {
-  purrr::map(datafile, labelled::var_label) %>%
-    unlist() %>%
+  assertthat::assert_that(
+    is.data.frame(datafile),
+    msg = "datafile must be a dataframe"
+  )
+
+  lapply(datafile, labelled::var_label) |>
+    unlist() |>
     tibble::enframe(name = "variable", value = "label")
 }
