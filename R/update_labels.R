@@ -1,4 +1,4 @@
-#' Update variables of a `labelled` tibble
+#' Update variable labels of a `labelled` tibble
 #'
 #' Updates the variable labels of a tibble using
 #' [labelled::set_variable_labels()]. The variables to be update should all have
@@ -38,7 +38,7 @@ update_var_labels <- function(dat, new_var_labels) {
     msg = "Columns of new_var_labels should be character"
   )
 
-  new_var_labels_ls <- split(new_var_labels, new_var_labels$variable) |>
+  new_var_labels_ls <- split(new_var_labels, new_var_labels[1]) |>
     lapply(tibble::deframe) |>
     lapply(unname)
 

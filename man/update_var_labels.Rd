@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_labels.R
 \name{update_var_labels}
 \alias{update_var_labels}
-\title{Update variables of a `labelled` tibble}
+\title{Update variable labels of a `labelled` tibble}
 \usage{
 update_var_labels(dat, new_var_labels)
 }
