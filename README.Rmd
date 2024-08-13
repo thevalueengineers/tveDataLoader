@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 )
 
 library(tveDataLoader)
+library(tibble)
 ```
 
 # tveDataLoader
@@ -67,4 +68,31 @@ tibble::tibble(
 
 ```
 
+Use `update_var_labels` and `update_val_labels` to change variable and value labels respectively.
 
+```{r}
+nresps <- 5
+dat <- tibble(
+  var1 = sample(1:3, nresps, replace = TRUE),
+  var2 = sample(0:1, nresps, replace = TRUE)
+)
+
+new_var_labels <- tribble(
+  ~variable, ~value,
+  "var1", "Variable 1",
+  "var2", "Variable 2"
+)
+
+new_val_labels <- tribble(
+  ~variable, ~value, ~`value label`,
+  "var1", 1, "value 1",
+  "var1", 2, "value 2",
+  "var1", 3, "value 3",
+  "var2", 0, "no",
+  "var2", 1, "yes"
+)
+
+dat |> 
+  update_var_labels(new_var_labels) |> 
+  update_val_labels(new_val_labels)
+```

@@ -16,7 +16,7 @@ run_data_checks(
 \item{data}{Data frame to be tested.}
 
 \item{vars}{Optional character vector of variable names to be tested within
-data}
+data. Default is NULL, i.e. test all variables.}
 
 \item{unique_id}{Logical. Whether to run the unique_id check. Default is
 `TRUE`.}
@@ -25,6 +25,16 @@ data}
 weight variable on which to run a summary. Default is `TRUE`.}
 
 \item{quiet}{Whether to display messages in the console. Default is true.}
+}
+\value{
+List of check outcomes:
+ \itemize{
+  \item{"data": `data` passed through}
+  \item{"unique_id": Names of variables identified as possible unique identifiers}
+  \item{"weight_var": Names of variables identified as possible weight variables}
+  \item{"weight_summary": Tibble of summary stats on possible weight variables}
+  \item{"vars_check": Character vector of variables in `vars` that are NOT present in `data`}
+  }
 }
 \description{
 Performs standard data checks on survey data. Doesn't alter the data in any

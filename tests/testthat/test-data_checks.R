@@ -86,3 +86,10 @@ test_that("multiple weight vars are summarised", {
     2
   )
 })
+
+test_that("correct vars not in data are identified", {
+  # q1 should be found
+  expect_equal(check_for_vars(test_dat, "q1", quiet = FALSE), character(0))
+  # q1 should be found, q2 should not be
+  expect_equal(check_for_vars(test_dat, c("q1", "q2"), quiet = FALSE), "q2")
+})

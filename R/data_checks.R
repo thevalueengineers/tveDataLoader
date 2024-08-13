@@ -5,12 +5,21 @@
 #'
 #' @param data Data frame to be tested.
 #' @param vars Optional character vector of variable names to be tested within
-#'   data
+#'   data. Default is NULL, i.e. test all variables.
 #' @param unique_id Logical. Whether to run the unique_id check. Default is
 #'   `TRUE`.
 #' @param weight Either a logical to check for a weight var, or the name of the
 #'   weight variable on which to run a summary. Default is `TRUE`.
 #' @param quiet Whether to display messages in the console. Default is true.
+#'
+#' @returns List of check outcomes:
+#'  \itemize{
+#'   \item{"data": `data` passed through}
+#'   \item{"unique_id": Names of variables identified as possible unique identifiers}
+#'   \item{"weight_var": Names of variables identified as possible weight variables}
+#'   \item{"weight_summary": Tibble of summary stats on possible weight variables}
+#'   \item{"vars_check": Character vector of variables in `vars` that are NOT present in `data`}
+#'   }
 #'
 #' @export
 run_data_checks <- function(data,
@@ -56,24 +65,8 @@ run_data_checks <- function(data,
     unique_id <- "Check not run"
   }
 
-  # if weight is logical look for a weight var ----
-  # if(is.logical(weight)) {
-  #   if(weight) {
-      weight_var <- check_for_weight(weight, data, all_vars, quiet)
-  #   } else {
-  #     weight_var <- "Check not run"
-  #   }
-  # } else {
-  #   # weight must be a character vector so check it's in the data
-  #   if(!quiet) message(glue::glue("Checking for {weight} in data"))
-  #   if(weight %in% names(data)) {
-  #     if(!quiet) message(glue::glue("{weight} found"))
-  #     weight_var <- weight
-  #   } else {
-  #     if(!quiet) message(glue::glue("{weight} is not a variable in data"))
-  #     weight_var <- "No weight variable found"
-  #   }
-  # }
+  # check for weight var ----
+  weight_var <- check_for_weight(weight, data, all_vars, quiet)
 
   # if we have a weight_var then summarise
   if(!"No weight variable found" %in% weight_var) {
@@ -82,13 +75,18 @@ run_data_checks <- function(data,
     weight_summary <- NULL
   }
 
+  # check for vars ----
+  vars_check <- check_for_vars(data, vars, quiet)
+
 
   # return check results ----
   return(
     list(
+      data = data,
       unique_id = unique_id,
       weight_var = weight_var,
-      weight_summary = weight_summary
+      weight_summary = weight_summary,
+      vars_check = vars_check
     )
   )
 }
@@ -233,4 +231,24 @@ summarise_weight_var <- function(weight_var, data, quiet = FALSE) {
   }
 
   return(weight_summary)
+}
+
+#' Checks for presence of `vars` in `data`
+#'
+#' @inheritParams run_data_checks
+#' @param vars Character vector of variable names. `data` will be checked for
+#'   the presence of each variable
+#'
+#' @export
+check_for_vars <- function(data, vars, quiet = FALSE) {
+  if(!quiet) message("Checking for presence of vars")
+  not_in_data <- vars[!vars %in% names(data)]
+
+  if(!quiet & length(not_in_data) > 0) {
+    message(glue::glue("{length(not_in_data)} vars not found in data: {stringr::str_flatten_comma(not_in_data)}"))
+  } else if (!quiet & length(not_in_data == 0)) {
+    message("All vars found")
+  }
+
+  return(not_in_data)
 }
