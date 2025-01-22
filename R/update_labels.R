@@ -42,8 +42,9 @@ update_var_labels <- function(dat, new_var_labels) {
     lapply(tibble::deframe) |>
     lapply(unname)
 
-  dat |>
-    labelled::set_variable_labels(.labels = new_var_labels_ls)
+  labelled::var_label(dat)  <- new_var_labels_ls
+
+  return(dat)
 }
 
 #' Update value labels of a `labelled` tibble
