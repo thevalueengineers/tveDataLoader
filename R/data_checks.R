@@ -198,9 +198,9 @@ check_for_weight <- function(weight = TRUE, data, vars, quiet = FALSE) {
 summarise_weight_var <- function(weight_var, data, quiet = FALSE) {
   if(!quiet) message("Summarise weight variable(s)")
   weight_summary <- data |>
-    dplyr::select(dplyr::all_of(weight_var)) |>
+    dplyr::select(tidyselect::all_of(weight_var)) |>
     # pivot in case there is more than 1 weight variable
-    tidyr::pivot_longer(everything(), names_to = "variable") |>
+    tidyr::pivot_longer(tidyselect::everything(), names_to = "variable") |>
     dplyr::group_by(variable) |>
     dplyr::summarise(
       # na.rm deliberately left as FALSE so that if there are missing weights

@@ -5,5 +5,8 @@
 inst/extdata/
 inst/notebooks/*_cache/
 inst/notebooks/*_files/
+inst/templates/*_cache/
+inst/templates/*_files/
 *.csv
 *.pdf
+*.html

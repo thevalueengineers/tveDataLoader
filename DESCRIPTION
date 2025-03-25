@@ -1,7 +1,7 @@
 Type: Package
 Package: tveDataLoader
 Title: What the Package Does (one line, title case)
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: 
     person(given = "first name",
            family = "last name",
@@ -18,10 +18,15 @@ Imports:
     labelled,
     assertthat,
     glue,
-    tidyr
+    tidyr,
+    dplyr,
+    tidyselect,
+    stats
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Depends: 
+    R (>= 3.5)

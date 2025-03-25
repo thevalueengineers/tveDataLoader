@@ -25,7 +25,7 @@ a row in `new_val_labels`. Variables that don't won't be changed and will
 keep their existing label.
 }
 \examples{
-dat <- tibble(
+dat <- tibble::tibble(
   a = labelled::labelled(c(1, 2), labels = c("value 1" = 1, "value 2" = 2))
 )
 tveDataLoader::get_valLabels(dat)

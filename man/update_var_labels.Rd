@@ -24,7 +24,7 @@ a row in `new_var_labels`. Variables that don't won't be changed and will
 keep their existing label.
 }
 \examples{
-dat <- tibble(a = 1, b = 2)
+dat <- tibble::tibble(a = 1, b = 2)
 tveDataLoader::get_varLabels(dat)
 new_var_labs <- tibble::tribble(
   ~variable, ~label,
