@@ -4,3 +4,4 @@
 ^.*\.Rproj$
 ^README\.Rmd$
 ^data-raw$
+^\.github$
