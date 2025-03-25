@@ -12,7 +12,7 @@
 #'   label, so they must be in that order.
 #'
 #' @examples
-#' dat <- tibble(a = 1, b = 2)
+#' dat <- tibble::tibble(a = 1, b = 2)
 #' tveDataLoader::get_varLabels(dat)
 #' new_var_labs <- tibble::tribble(
 #'   ~variable, ~label,
@@ -30,7 +30,7 @@ update_var_labels <- function(dat, new_var_labels) {
     msg = "data to relable must be a data frame"
   )
   assertthat::assert_that(
-    and(is.data.frame(new_var_labels), ncol(new_var_labels) == 2),
+    magrittr::and(is.data.frame(new_var_labels), ncol(new_var_labels) == 2),
     msg = "new_var_labels should be a data frame with 2 columns"
   )
   assertthat::assert_that(
@@ -62,7 +62,7 @@ update_var_labels <- function(dat, new_var_labels) {
 #'   order.
 #'
 #' @examples
-#' dat <- tibble(
+#' dat <- tibble::tibble(
 #'   a = labelled::labelled(c(1, 2), labels = c("value 1" = 1, "value 2" = 2))
 #' )
 #' tveDataLoader::get_valLabels(dat)
@@ -83,7 +83,7 @@ update_val_labels <- function(dat, new_val_labels) {
     msg = "data to relable must be a data frame"
   )
   assertthat::assert_that(
-    and(is.data.frame(new_val_labels), ncol(new_val_labels) == 3),
+    magrittr::and(is.data.frame(new_val_labels), ncol(new_val_labels) == 3),
     msg = "new_val_labels should be a data frame with 3 columns"
   )
   # no checking of new_val_labels col types because we can't assume the value
