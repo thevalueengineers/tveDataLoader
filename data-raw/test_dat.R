@@ -1,3 +1,4 @@
+## code to prepare `test_dat` dataset goes here
 test_dat <- tibble::tibble(
   respid = 1:100,
   q1 = labelled::labelled(
@@ -23,15 +24,4 @@ test_dat <- tibble::tibble(
 ) |>
   tibble::add_column(weight = 1)
 
-new_dat_var_labels <- tibble::tribble(
-  ~variable, ~label,
-  "q1", "q1 label",
-  "q1.1", "q1.1 label"
-)
-new_dat_val_labels <- tibble::tribble(
-  ~variable, ~value, ~`value label`,
-  "q1", 1, "q1 label 1",
-  "q1", 2, "q1 label 2",
-  "q1", 3, "q1 label 3",
-  "q1", 4, "q1 label 4"
-)
+usethis::use_data(test_dat, overwrite = TRUE)
