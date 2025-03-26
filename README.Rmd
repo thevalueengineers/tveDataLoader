@@ -20,6 +20,7 @@ library(tibble)
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/thevalueengineers/tveDataLoader/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/thevalueengineers/tveDataLoader/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/gh/thevalueengineers/tveDataLoader/graph/badge.svg?token=31TXY5ABMX)](https://codecov.io/gh/thevalueengineers/tveDataLoader)
 <!-- badges: end -->
 
 Load spss .sav data and perform basic data checks in a TVE manner.
