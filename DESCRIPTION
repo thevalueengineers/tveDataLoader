@@ -1,14 +1,16 @@
 Type: Package
 Package: tveDataLoader
-Title: What the Package Does (one line, title case)
+Title: DTAG Analytics Data Loading Services
 Version: 1.0.0
 Authors@R: 
-    person(given = "first name",
-           family = "last name",
+    person(given = "Juan",
+           family = "Hernandez",
            role = c("aut", "cre"),
-           email = "email@email.com")
-Description: What the package does (one paragraph).
-License: GPL-3
+           email = "juan.hernandez@thevalueengineers.com")
+Description: This package provides the functionality required by the DTAG Analytics team 
+    to load SPSS data into R. It includes data cleaning and will be expanded in the future 
+    to include other data formats.
+License: file LICENSE
 Imports: 
     magrittr,
     haven,
