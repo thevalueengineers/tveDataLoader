@@ -4,12 +4,12 @@
 \name{tveDataLoader-package}
 \alias{tveDataLoader}
 \alias{tveDataLoader-package}
-\title{tveDataLoader: What the Package Does (one line, title case)}
+\title{tveDataLoader: DTAG Analytics Data Loading Services}
 \description{
-What the package does (one paragraph).
+This package provides the functionality required by the DTAG Analytics team to load SPSS data into R. It includes data cleaning and will be expanded in the future to include other data formats.
 }
 \author{
-\strong{Maintainer}: first name last name \email{email@email.com}
+\strong{Maintainer}: Juan Hernandez \email{juan.hernandez@thevalueengineers.com}
 
 }
 \keyword{internal}
