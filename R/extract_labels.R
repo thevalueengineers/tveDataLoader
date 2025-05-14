@@ -3,6 +3,20 @@
 #' This function extracts all variable and value labels (i.e., metadata) from an
 #' SPSS file. It also identifies the variables for which no metadata is available.
 #'
+#' @details
+#' The function performs several operations:
+#' \itemize{
+#'   \item Extracts variable labels for all variables in the dataset
+#'   \item Identifies variables that lack variable labels
+#'   \item Extracts value labels for categorical variables
+#'   \item Validates that no character variables have value labels (throws an error if found)
+#'   \item Identifies variables that lack value labels
+#' }
+#'
+#' The function will throw an error if it encounters any character variables with
+#' value labels, as these are not supported. The error message will list the
+#' problematic variables that need to be checked.
+#'
 #' @param loaded_data A tibble created by reading in an SPSS .sav file using the
 #'   haven package. The data must contain SPSS metadata (variable and value labels).
 #' @param tibble_out Logical indicating whether to return the output as a list
@@ -25,6 +39,8 @@
 #'
 #' @examples
 #' data(test_sav)
+#' test_sav <- test_sav |>
+#'   dplyr::select(-lab_var3)
 #'
 #' # extract variable and value labels
 #' labels_list <- extract_labels(test_sav)
@@ -53,7 +69,24 @@ extract_labels <- function(loaded_data,
 
   # create value labels data.table
   val_labels <- loaded_data |>
-    labelled::get_value_labels() |>
+    labelled::get_value_labels()
+
+  # check for any values with labels which aren't numeric, this should be flagged
+  # as an error
+  val_labels_check <- val_labels |>
+    lapply(\(x) methods::is(x, 'character')) |>
+    purrr::keep(\(x) isTRUE(x)) |>
+    names()
+
+  assertthat::assert_that(
+    length(val_labels_check) == 0,
+    msg = paste0("No value labels should be included for character variables.
+                 The following variables should be checked: ",
+                 paste(val_labels_check, collapse = ", "))
+  )
+
+  # if no errors proceed with value labels extraction
+  val_labels <- val_labels |>
     lapply(data.table::as.data.table,
            keep.rownames = TRUE) |>
     data.table::rbindlist(idcol = 'var_name') |>

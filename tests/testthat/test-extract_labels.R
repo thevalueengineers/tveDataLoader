@@ -45,3 +45,10 @@ test_that("Function works returning data.tables", {
   expect_equal(new_list, expected_list_dt)
 
 })
+
+test_that("Function stops if character values with labels present", {
+
+  expect_error(extract_labels(test_sav))
+
+})
+
