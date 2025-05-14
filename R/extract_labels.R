@@ -24,13 +24,11 @@
 #' @export
 #'
 #' @examples
-#' data_path <- system.file("extdata", "test_sav.sav", package = "tveDataLoader")
-#'
-#' # load an SPSS dataset
-#' loaded_data <- haven::read_sav(data_path)
+#' data(test_sav)
 #'
 #' # extract variable and value labels
-#' labels_list <- extract_labels(loaded_data)
+#' labels_list <- extract_labels(test_sav)
+#'
 extract_labels <- function(loaded_data,
                             tibble_out = TRUE){
 
@@ -43,11 +41,12 @@ extract_labels <- function(loaded_data,
     labelled::get_variable_labels(unlist = TRUE) |>
     data.table::as.data.table(keep.rownames = TRUE) |>
     data.table::setnames(c('var_name', 'var_label')) |>
+    _[var_label != ''] |>
     data.table::setkey('var_name')
 
   # create variable labels check to report variables with no variable labels
   no_var_labels <- loaded_mask |>
-    setdiff(var_labels[var_label != ""][['var_name']]) |>
+    setdiff(var_labels[['var_name']]) |>
     data.table::as.data.table() |>
     data.table::setnames('var_name') |>
     data.table::setkey('var_name')

@@ -2,7 +2,8 @@
 
 set.seed(1)
 test_sav <- tibble::tibble(
-  respid = 1:100,
+  respid = labelled::labelled(1:100,
+                              label = 'respid'),
   lab_var1 = labelled::labelled(
     sample(1:4, 100, replace = TRUE),
     labels = c(
@@ -24,7 +25,12 @@ test_sav <- tibble::tibble(
   num_var1 = rnorm(100),
   char_var1 = sample(letters, 100, replace = TRUE),
   lab_var3 = labelled::labelled(
-    sample(letters, 100, replace = TRUE)
+    sample(letters[4:6], 100, replace = TRUE),
+    labels = c(
+      "d" = "letter d",
+      "e" = "letter e",
+      "f" = "letter f"
+    )
   )
 )
 

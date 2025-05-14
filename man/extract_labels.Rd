@@ -32,11 +32,9 @@ This function extracts all variable and value labels (i.e., metadata) from an
 SPSS file. It also identifies the variables for which no metadata is available.
 }
 \examples{
-data_path <- system.file("extdata", "test_sav.sav", package = "tveDataLoader")
-
-# load an SPSS dataset
-loaded_data <- haven::read_sav(data_path)
+data(test_sav)
 
 # extract variable and value labels
-labels_list <- extract_labels(loaded_data)
+labels_list <- extract_labels(test_sav)
+
 }
