@@ -3,10 +3,18 @@
 
 ## usethis namespace: start
 
+#' @importFrom data.table :=
+#' @importFrom data.table .BY
+#' @importFrom data.table .EACHI
+#' @importFrom data.table .GRP
+#' @importFrom data.table .I
+#' @importFrom data.table .N
+#' @importFrom data.table .NGRP
+#' @importFrom data.table .SD
+#' @importFrom data.table data.table
 #' @importFrom stats median
 #' @importFrom stats sd
 #' @importFrom stats var
-
 ## usethis namespace: end
-globalVariables(c('.', 'value', 'variable'))
+globalVariables(c('.', 'value', 'variable', 'var_label'))
 NULL
