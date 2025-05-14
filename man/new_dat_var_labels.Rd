@@ -7,8 +7,8 @@
 \format{
 A tibble with 2 rows and 2 columns:
 \describe{
-  \item{variable}{Variable name in the survey dataset}
-  \item{label}{Descriptive label for the variable}
+\item{variable}{Variable name in the survey dataset}
+\item{label}{Descriptive label for the variable}
 }
 }
 \source{

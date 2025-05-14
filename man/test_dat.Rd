@@ -7,10 +7,10 @@
 \format{
 A tibble with 100 rows and 4 columns:
 \describe{
-  \item{respid}{Respondent ID (1-100)}
-  \item{q1}{A labelled variable with values 1-4, labelled as A through D}
-  \item{q1.1}{A labelled variable with values 1-4, labelled as A through D}
-  \item{weight}{Survey weight, all set to 1}
+\item{respid}{Respondent ID (1-100)}
+\item{q1}{A labelled variable with values 1-4, labelled as A through D}
+\item{q1.1}{A labelled variable with values 1-4, labelled as A through D}
+\item{weight}{Survey weight, all set to 1}
 }
 }
 \source{

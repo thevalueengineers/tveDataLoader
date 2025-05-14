@@ -7,14 +7,14 @@
 summarise_weight_var(weight_var, data, quiet = FALSE)
 }
 \arguments{
-\item{weight_var}{Character vector of weight variable names in `data` to be summarised.}
+\item{weight_var}{Character vector of weight variable names in \code{data} to be summarised.}
 
-\item{data}{Dataframe that contains `weight_var`(s).}
+\item{data}{Dataframe that contains \code{weight_var}(s).}
 
 \item{quiet}{Whether to display messages in the console. Default is true.}
 }
 \value{
-A tibble of summary statistics with 1 row per `weight_var`.
+A tibble of summary statistics with 1 row per \code{weight_var}.
 }
 \description{
 Run summary statistics on weight variable

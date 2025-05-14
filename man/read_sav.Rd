@@ -10,5 +10,8 @@ read_sav(filepath)
 \item{filepath}{Character storing filepath, including filename, of the sav file to be read in}
 }
 \description{
-Wrapper around haven::read_sav() and stringr::str_to_lower()
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+
+Wrapper around haven::read_sav() and stringr::str_to_lower(). This function
+has now been superseded by \code{\link[=load_sav]{load_sav()}}.
 }
