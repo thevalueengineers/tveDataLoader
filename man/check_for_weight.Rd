@@ -8,7 +8,7 @@ check_for_weight(weight = TRUE, data, vars, quiet = FALSE)
 }
 \arguments{
 \item{weight}{Either a logical to check for a weight var, or the name of the
-weight variable on which to run a summary. Default is `TRUE`.}
+weight variable on which to run a summary. Default is \code{TRUE}.}
 
 \item{data}{Data frame to be tested.}
 
@@ -18,7 +18,7 @@ weight variable on which to run a summary. Default is `TRUE`.}
 }
 \value{
 Character vector of potential weight variable names or "No weight
-  variable found" if no potential weight variable identified.
+variable found" if no potential weight variable identified.
 }
 \description{
 Searches for a variable name that includes "weight" in the variable names

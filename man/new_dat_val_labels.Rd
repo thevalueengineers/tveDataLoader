@@ -7,9 +7,9 @@
 \format{
 A tibble with 4 rows and 3 columns:
 \describe{
-  \item{variable}{Variable name in the survey dataset}
-  \item{value}{Numeric value of the response}
-  \item{value label}{Descriptive label for the response value}
+\item{variable}{Variable name in the survey dataset}
+\item{value}{Numeric value of the response}
+\item{value label}{Descriptive label for the response value}
 }
 }
 \source{

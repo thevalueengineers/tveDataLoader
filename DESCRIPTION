@@ -1,7 +1,7 @@
 Type: Package
 Package: tveDataLoader
 Title: DTAG Analytics Data Loading Services
-Version: 1.0.0.9000
+Version: 1.1.0
 Authors@R: 
     person(given = "Juan",
            family = "Hernandez",
@@ -23,7 +23,11 @@ Imports:
     tidyr,
     dplyr,
     tidyselect,
-    stats
+    stats,
+    data.table,
+    methods,
+    lifecycle,
+    janitor
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
@@ -33,3 +37,4 @@ Suggests:
 Config/testthat/edition: 3
 Depends: 
     R (>= 3.5)
+Roxygen: list(markdown = TRUE)

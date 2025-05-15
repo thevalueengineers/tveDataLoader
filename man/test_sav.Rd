@@ -7,12 +7,12 @@
 \format{
 A tibble with 100 rows and 6 columns:
 \describe{
-  \item{respid}{Respondent ID (1-100)}
-  \item{lab_var1}{A labelled variable with values 1-4, labelled as A through D}
-  \item{lab_var2}{A labelled variable with values 1-2, labelled as a and b}
-  \item{num_var1}{A numeric variable with random normal distribution}
-  \item{char_var1}{A character variable with random letters}
-  \item{lab_var3}{A labelled character variable with random letters}
+\item{respid}{A labelled variable with Respondent ID (1-100)}
+\item{lab_var1}{A labelled variable with values 1-4, labelled as A through D}
+\item{lab_var2}{A labelled variable with values 1-2, labelled as a and b}
+\item{num_var1}{A numeric variable with random normal distribution}
+\item{char_var1}{A character variable with random letters}
+\item{lab_var3}{A labelled character variable with random letters}
 }
 }
 \source{
