@@ -12,6 +12,7 @@
 #' @importFrom data.table .NGRP
 #' @importFrom data.table .SD
 #' @importFrom data.table data.table
+#' @importFrom lifecycle deprecated
 #' @importFrom stats median
 #' @importFrom stats sd
 #' @importFrom stats var

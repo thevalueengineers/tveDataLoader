@@ -48,7 +48,9 @@ test_that("Function works returning data.tables", {
 
 test_that("Function stops if character values with labels present", {
 
-  expect_error(extract_labels(test_sav))
+  expect_error(extract_labels(test_sav),
+               regexp = 'No value labels should be included for character variables.
+The following variables should be checked: lab_var3')
 
 })
 

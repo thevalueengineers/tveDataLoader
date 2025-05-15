@@ -16,16 +16,16 @@ data.tables.}
 }
 \value{
 A list containing four elements:
-  \itemize{
-    \item var_labels: A tibble/data.table with variable names and their labels
-      containing columns 'var_name' and 'var_label'
-    \item val_labels: A tibble/data.table with value labels for categorical variables
-      containing columns 'var_name', 'val_label', and 'val_value'
-    \item no_var_labels: A tibble/data.table with names of variables that have no
-      variable labels
-    \item no_val_labels: A tibble/data.table with names of variables that have no
-      value labels
-  }
+\itemize{
+\item var_labels: A tibble/data.table with variable names and their labels
+containing columns 'var_name' and 'var_label'
+\item val_labels: A tibble/data.table with value labels for categorical variables
+containing columns 'var_name', 'val_label', and 'val_value'
+\item no_var_labels: A tibble/data.table with names of variables that have no
+variable labels
+\item no_val_labels: A tibble/data.table with names of variables that have no
+value labels
+}
 }
 \description{
 This function extracts all variable and value labels (i.e., metadata) from an
@@ -34,11 +34,11 @@ SPSS file. It also identifies the variables for which no metadata is available.
 \details{
 The function performs several operations:
 \itemize{
-  \item Extracts variable labels for all variables in the dataset
-  \item Identifies variables that lack variable labels
-  \item Extracts value labels for categorical variables
-  \item Validates that no character variables have value labels (throws an error if found)
-  \item Identifies variables that lack value labels
+\item Extracts variable labels for all variables in the dataset
+\item Identifies variables that lack variable labels
+\item Extracts value labels for categorical variables
+\item Validates that no character variables have value labels (throws an error if found)
+\item Identifies variables that lack value labels
 }
 
 The function will throw an error if it encounters any character variables with

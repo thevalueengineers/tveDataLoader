@@ -29,22 +29,37 @@ tve_path("Z:/shared/TVE Data/1. Client Projects/")
 #> [1] "/Users/juanhernandez/Library/CloudStorage/Egnyte-thevalueengineers/shared/TVE Data/1. Client Projects/"
 ```
 
-`read_sav` is a wrapper around `haven::read_sav` that also converts all
-variable names to lower case for consistency. Use it instead of
-`haven::read_sav` and try to avoid loading the `haven` package into
-projects.
+### Loading SPSS Data
 
-Load spss data with `read_sav` and `tve_path`:
+The package provides enhanced functionality for loading SPSS (.sav)
+files through the `load_sav()` function. This function not only loads
+the data but also extracts and organizes variable and value labels,
+making it easier to work with SPSS metadata.
 
 ``` r
 library(tveDataLoader)
-read_sav(
+
+# Load SPSS data with metadata extraction
+loaded_data <- load_sav(
   paste0(
     tve_path(path_to_file),
     "filename.sav"
   )
 )
+
+# The loaded_data object is a list containing:
+# - loaded_data$loaded_data: The actual dataset
+# - loaded_data$var_labels: Variable labels
+# - loaded_data$val_labels: Value labels
+# - loaded_data$no_var_labels: Variables without variable labels
+# - loaded_data$no_val_labels: Variables without value labels
 ```
+
+> Note: The older `read_sav()` function has been superseded by
+> `load_sav()` which provides enhanced functionality for handling SPSS
+> data and metadata.
+
+### Data Checks
 
 `run_data_checks` performs basic data checks and exploration on your
 data.
@@ -65,15 +80,15 @@ tibble::tibble(
 #> # A tibble: 10 × 3
 #>    respid weight    q1
 #>     <int>  <dbl> <int>
-#>  1      1      1     4
-#>  2      2      1     1
-#>  3      3      1     3
-#>  4      4      1     4
-#>  5      5      1     4
+#>  1      1      1     5
+#>  2      2      1     2
+#>  3      3      1     1
+#>  4      4      1     2
+#>  5      5      1     1
 #>  6      6      1     2
 #>  7      7      1     5
-#>  8      8      1     3
-#>  9      9      1     4
+#>  8      8      1     1
+#>  9      9      1     5
 #> 10     10      1     1
 #> 
 #> $unique_id
@@ -91,6 +106,8 @@ tibble::tibble(
 #> $vars_check
 #> NULL
 ```
+
+### Updating Labels
 
 Use `update_var_labels` and `update_val_labels` to change variable and
 value labels respectively.
@@ -123,9 +140,9 @@ dat |>
 #> # A tibble: 5 × 2
 #>   var1        var2     
 #>   <int+lbl>   <int+lbl>
-#> 1 2 [value 2] 1 [yes]  
+#> 1 1 [value 1] 1 [yes]  
 #> 2 1 [value 1] 1 [yes]  
-#> 3 2 [value 2] 1 [yes]  
-#> 4 2 [value 2] 0 [no]   
+#> 3 1 [value 1] 1 [yes]  
+#> 4 3 [value 3] 1 [yes]  
 #> 5 1 [value 1] 1 [yes]
 ```

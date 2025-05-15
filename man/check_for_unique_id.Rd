@@ -15,9 +15,9 @@ check_for_unique_id(data, vars, quiet = FALSE)
 }
 \value{
 Character vector of the potential unique ID variable(s) names or "No
-  ID" if none are found.
+ID" if none are found.
 }
 \description{
-Checks `vars` to see if any are unique for each row. Returns the variable
+Checks \code{vars} to see if any are unique for each row. Returns the variable
 name or names if more than 1 potential unique ID are found.
 }
