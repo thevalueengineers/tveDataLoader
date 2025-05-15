@@ -81,7 +81,7 @@ extract_labels <- function(loaded_data,
   assertthat::assert_that(
     length(val_labels_check) == 0,
     msg = paste0("No value labels should be included for character variables.
-                 The following variables should be checked: ",
+The following variables should be checked: ",
                  paste(val_labels_check, collapse = ", "))
   )
 

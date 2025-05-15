@@ -55,14 +55,33 @@ load_sav <- function(data_path,
 
   # load SPSS data
   loaded_data <- haven::read_sav(data_path) |>
-    janitor::clean_names() |>
+    janitor::clean_names()
+
+  # validation that keyv are in the data
+  assertthat::assert_that(
+    all(keyv %in% names(loaded_data)),
+    msg = paste0("Key variables not found in data: ",
+                 paste(keyv[!keyv %in% names(loaded_data)], collapse = ", "))
+  )
+
+  loaded_data <- loaded_data |>
     data.table::setDT(key = keyv)
 
   # omit columns if specified
-  if(isFALSE(is.null(col_omit))) loaded_data[, (col_omit) := NULL]
+  if(isFALSE(is.null(col_omit))) {
+
+    # validation that col_omit are in the data
+    assertthat::assert_that(
+      all(col_omit %in% names(loaded_data)),
+      msg = paste0("Columns to omit not found in data: ",
+                   paste(col_omit[!col_omit %in% names(loaded_data)], collapse = ", "))
+    )
+    loaded_data[, (col_omit) := NULL]
+
+  }
 
   out_list <- extract_labels(loaded_data,
-                                tibble_out = tibble_out)
+                             tibble_out = tibble_out)
 
   # create list of output tables
   if(isTRUE(tibble_out)) {
