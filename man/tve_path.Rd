@@ -4,10 +4,12 @@
 \alias{tve_path}
 \title{Generate an OS specific TVE filepath}
 \usage{
-tve_path(path)
+tve_path(path, dtag_company = "tve")
 }
 \arguments{
 \item{path}{File path to be converted}
+
+\item{dtag_company}{whether file path is for tve or 2cv}
 }
 \description{
 Paths on macOS don't use named drives, meaning a filepath from a Windows
