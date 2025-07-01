@@ -2,8 +2,8 @@
 
 set.seed(1)
 test_sav <- tibble::tibble(
-  respid = labelled::labelled(1:100,
-                              label = 'respid'),
+  respid_test = labelled::labelled(1:100,
+    label = 'respid_test',),
   lab_var1 = labelled::labelled(
     sample(1:4, 100, replace = TRUE),
     labels = c(

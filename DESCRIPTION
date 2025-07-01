@@ -1,7 +1,7 @@
 Type: Package
 Package: tveDataLoader
 Title: DTAG Analytics Data Loading Services
-Version: 1.1.0
+Version: 1.1.0.9000
 Authors@R: 
     person(given = "Juan",
            family = "Hernandez",

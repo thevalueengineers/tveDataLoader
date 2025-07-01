@@ -1,8 +1,8 @@
 # create expected outcomes for testing as data.tables
 expected_list_dt <- list(
   var_labels = data.table::data.table(
-    var_name = c('lab_var1', 'lab_var2', 'respid'),
-    var_label = c('v1 label', 'v2 label', 'respid')
+    var_name = c('lab_var1', 'lab_var2', 'respid_test'),
+    var_label = c('v1 label', 'v2 label', 'respid_test')
   ) |>
     data.table::setkey('var_name'),
   val_labels = data.table::data.table(
@@ -17,7 +17,7 @@ expected_list_dt <- list(
   ) |>
     data.table::setkey('var_name'),
   no_val_labels = data.table::data.table(
-    var_name = c('char_var1', 'num_var1', 'respid')
+    var_name = c('char_var1', 'num_var1', 'respid_test')
   ) |>
     data.table::setkey('var_name')
 )

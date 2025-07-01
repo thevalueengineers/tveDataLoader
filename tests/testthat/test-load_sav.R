@@ -3,7 +3,8 @@ data_path <- system.file("extdata", "test_sav.sav", package = "tveDataLoader")
 test_that("Function loads SPSS file as tibbles with valid data", {
 
   loaded_data <- load_sav(data_path,
-                          col_omit = c('lab_var3'))
+                          col_omit = c('lab_var3'),
+                        keyv = 'respid_test')
 
   # confirm dimensions of loaded data are as expected
   testthat::expect_equal(dim(loaded_data$loaded_data),
@@ -30,7 +31,8 @@ test_that("Function loads SPSS file as data.tables with valid data", {
 
   loaded_data <- load_sav(data_path,
                           col_omit = c('lab_var3'),
-                          tibble_out = FALSE)
+                          tibble_out = FALSE,
+                          keyv = 'respid_test')
 
   # confirm the expected named list is returned
   testthat::expect_named(loaded_data,
@@ -52,7 +54,7 @@ test_that("Function loads SPSS file as data.tables with valid data", {
 test_that("Function stops if validation criteria is not met", {
 
   # ensure the function stops if some variables have value labels and are character
-  testthat::expect_error(load_sav(data_path),
+  testthat::expect_error(load_sav(data_path, keyv = 'respid_test'),
                          regexp = 'No value labels should be included for character variables.
 The following variables should be checked: lab_var3')
 
@@ -63,7 +65,35 @@ The following variables should be checked: lab_var3')
 
   # ensure the function stops if col_omit variables are not in the data
   testthat::expect_error(load_sav(data_path,
-                                  col_omit = 'madeupvar'),
+                                  col_omit = 'madeupvar',
+                                  keyv = 'respid_test'),
                          regexp = 'Columns to omit not found in data: madeupvar')
+
+})
+
+
+test_that("Function loads SPSS file and creates column respid if not specified in keyv", {
+
+  loaded_data <- load_sav(data_path,
+                          col_omit = c('lab_var3'),
+                          keyv_name = 'respid',
+                          tibble_out = FALSE)
+                          
+  # confirm new variable respid is created as a vector of integers: 1:nrow(loaded$data) labelled 
+  # with 'respid' as label.
+  testthat::expect_identical(loaded_data$loaded_data$respid, 
+    labelled::labelled(1:nrow(loaded_data$loaded_data),
+      label = 'respid') |> 
+      haven::zap_labels()
+  )
+
+  # confirm selected variable is set as the key variable
+  testthat::expect_true(data.table::key(loaded_data$loaded_data) == 'respid')
+
+  # confirm selected variable is recorded as having variable labels but no value labels
+  testthat::expect_false('respid' %in% loaded_data$no_var_labels$var_name)
+  testthat::expect_true('respid' %in% loaded_data$var_labels$var_name)
+  testthat::expect_true('respid' %in% loaded_data$var_labels$var_label)
+  testthat::expect_true('respid' %in% loaded_data$no_val_labels$var_name)
 
 })

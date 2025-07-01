@@ -4,12 +4,25 @@
 \alias{load_sav}
 \title{Load tidy SPSS Data}
 \usage{
-load_sav(data_path, keyv = c("respid"), col_omit = NULL, tibble_out = TRUE)
+load_sav(
+  data_path,
+  keyv = NULL,
+  keyv_name = "respid",
+  col_omit = NULL,
+  tibble_out = TRUE
+)
 }
 \arguments{
 \item{data_path}{Path to the SPSS data file.}
 
-\item{keyv}{A character vector of variable names to set as keys for the data.table.}
+\item{keyv}{A character vector of variable names that exist in the data to set as keys
+for the data.table. If NULL (default), the function will use or create a key variable
+based on the \code{keyv_name} parameter.}
+
+\item{keyv_name}{A character string specifying the name of the key variable to use when
+\code{keyv} is NULL. If this variable exists in the data, it will be used as the key.
+If it does not exist, a new sequential variable with this name will be created and
+used as the key. Default is "respid".}
 
 \item{col_omit}{A character vector of column names to omit from the loaded data.}
 
@@ -24,20 +37,44 @@ A list containing:
 \item{no_var_labels}{A data.table or tibble containing variables with no variable labels.}
 \item{val_labels}{A data.table or tibble containing value labels.}
 \item{no_val_labels}{A data.table or tibble containing variables with no value labels.}
-\item{loaded_data}{The loaded SPSS data as a data.table or tibble.}
+\item{loaded_data}{The loaded SPSS data as a data.table or tibble with labels removed.}
 }
 }
 \description{
 This function loads SPSS data and creates data.tables for variable labels and value labels.
+The function can automatically create or use existing key variables for data.table indexing.
 }
 \details{
-The loaded SPSS data has all labels removed via \code{haven::zap_labels()}.
+The function performs the following operations:
+\itemize{
+\item{Loads SPSS data using \code{haven::read_sav()} and cleans variable names}
+\item{Sets up data.table keys based on the \code{keyv} and \code{keyv_name} parameters}
+\item{Removes specified columns if \code{col_omit} is provided}
+\item{Extracts variable and value labels using \code{extract_labels()}}
+\item{Removes all labels from the final data using \code{haven::zap_labels()}}
+}
+
+Key variable behavior:
+\itemize{
+\item{If \code{keyv} is provided: Uses the specified existing variables as keys}
+\item{If \code{keyv} is NULL and \code{keyv_name} exists in data: Uses that variable as key}
+\item{If \code{keyv} is NULL and \code{keyv_name} does not exist: Creates a new sequential variable with the specified name}
+}
 }
 \examples{
 # Define path to SPSS file to be loaded
 data_path <- system.file("extdata", "test_sav.sav", package = "tveDataLoader")
 
-# Load the SPSS file using load_sav omitting non-valid columns
-loaded_data <- load_sav(data_path, col_omit = 'lab_var3')
+# Load the SPSS file using default settings (creates "respid" key) & omits specific columns
+loaded_data1 <- load_sav(data_path, col_omit = "lab_var3")
+
+# Load with custom key name
+loaded_data2 <- load_sav(data_path, keyv_name = "id", col_omit = "lab_var3")
+
+# Load using existing variables as keys
+loaded_data3 <- load_sav(data_path, keyv = c("lab_var1", "lab_var2"), col_omit = "lab_var3")
+
+# Load as data.table instead of tibble
+loaded_data4 <- load_sav(data_path, col_omit = "lab_var3", tibble_out = FALSE)
 
 }
