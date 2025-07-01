@@ -19,8 +19,9 @@ library(tibble)
 # tveDataLoader
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/thevalueengineers/tveDataLoader/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/thevalueengineers/tveDataLoader/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/thevalueengineers/tveDataLoader/graph/badge.svg?token=31TXY5ABMX)](https://codecov.io/gh/thevalueengineers/tveDataLoader)
+
+[![R-CMD-check](https://github.com/thevalueengineers/tveDataLoader/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/thevalueengineers/tveDataLoader/actions/workflows/R-CMD-check.yaml) [![codecov](https://codecov.io/gh/thevalueengineers/tveDataLoader/graph/badge.svg?token=31TXY5ABMX)](https://codecov.io/gh/thevalueengineers/tveDataLoader)
+
 <!-- badges: end -->
 
 Load spss .sav data and perform basic data checks in a TVE manner.
@@ -29,7 +30,7 @@ Load spss .sav data and perform basic data checks in a TVE manner.
 
 Install from github:
 
-``` {r eval=FALSE}
+```{r eval=FALSE}
 renv::install("thevalueengineers/tveDataLoader")
 ```
 
@@ -37,7 +38,7 @@ renv::install("thevalueengineers/tveDataLoader")
 
 `tve_path` converts paths to egnyte between Windows and MacOS formats.
 
-``` {r}
+```{r}
 # Run on MacOS:
 tve_path("Z:/shared/TVE Data/1. Client Projects/")
 ```
@@ -111,9 +112,9 @@ loaded_data <- load_sav(
 The function handles key variables intelligently:
 
 - **Default behavior**: Creates a sequential key variable named "respid"
-- **Custom key name (`keyv_name`)**: 
-  - If variable exists in data: uses it as the key
-  - If variable doesn't exist: creates new sequential key with that name
+- **Custom key name (`keyv_name`)**:
+    - If variable exists in data: uses it as the key
+    - If variable doesn't exist: creates new sequential key with that name
 - **Explicit key variables (`keyv`)**: Uses specified existing variables as keys
 - **Data sorting**: When `sort_by_key = TRUE`, data is sorted by the key variable(s)
 
@@ -123,7 +124,7 @@ The function handles key variables intelligently:
 
 `run_data_checks` performs basic data checks and exploration on your data.
 
-``` {r}
+```{r}
 tibble::tibble(
   respid = 1:10,
   weight = rep(1, 10),
@@ -162,4 +163,3 @@ dat |>
   update_var_labels(new_var_labels) |> 
   update_val_labels(new_val_labels)
 ```
-
