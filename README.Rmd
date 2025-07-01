@@ -46,10 +46,12 @@ tve_path("Z:/shared/TVE Data/1. Client Projects/")
 
 The package provides enhanced functionality for loading SPSS (.sav) files through the `load_sav()` function. This function not only loads the data but also extracts and organizes variable and value labels, making it easier to work with SPSS metadata.
 
-```{r example, eval=FALSE}
+#### Basic Usage
+
+```{r example-basic, eval=FALSE}
 library(tveDataLoader)
 
-# Load SPSS data with metadata extraction
+# Basic data loading with automatic key creation
 loaded_data <- load_sav(
   paste0(
     tve_path(path_to_file),
@@ -58,12 +60,62 @@ loaded_data <- load_sav(
 )
 
 # The loaded_data object is a list containing:
-# - loaded_data$loaded_data: The actual dataset
+# - loaded_data$loaded_data: The actual dataset (with labels removed)
 # - loaded_data$var_labels: Variable labels
 # - loaded_data$val_labels: Value labels
 # - loaded_data$no_var_labels: Variables without variable labels
 # - loaded_data$no_val_labels: Variables without value labels
 ```
+
+#### Key Variable Management
+
+The `load_sav()` function provides flexible options for managing key variables in your dataset:
+
+```{r example-keys, eval=FALSE}
+# Option 1: Create a sequential key variable with default name "respid"
+loaded_data <- load_sav("filename.sav")
+
+# Option 2: Create a sequential key variable with custom name
+loaded_data <- load_sav("filename.sav", keyv_name = "participant_id")
+
+# Option 3: Use existing variable(s) as key(s)
+loaded_data <- load_sav("filename.sav", keyv = c("id", "wave"))
+```
+
+#### Additional Options
+
+```{r example-options, eval=FALSE}
+# Omit specific columns and set custom key
+loaded_data <- load_sav(
+  "filename.sav",
+  keyv_name = "id",
+  col_omit = c("sensitive_var", "temp_var")
+)
+
+# Use data.table format instead of tibble
+loaded_data <- load_sav(
+  "filename.sav",
+  tibble_out = FALSE
+)
+
+# Sort data by key variables
+loaded_data <- load_sav(
+  "filename.sav",
+  keyv = c("region", "respondent_id"),
+  sort_by_key = TRUE
+)
+```
+
+#### Key Variable Behavior
+
+The function handles key variables intelligently:
+
+- **Default behavior**: Creates a sequential key variable named "respid"
+- **Custom key name (`keyv_name`)**: 
+  - If variable exists in data: uses it as the key
+  - If variable doesn't exist: creates new sequential key with that name
+- **Explicit key variables (`keyv`)**: Uses specified existing variables as keys
+- **Data sorting**: When `sort_by_key = TRUE`, data is sorted by the key variable(s)
 
 > Note: The older `read_sav()` function has been superseded by `load_sav()` which provides enhanced functionality for handling SPSS data and metadata.
 
@@ -110,3 +162,4 @@ dat |>
   update_var_labels(new_var_labels) |> 
   update_val_labels(new_val_labels)
 ```
+

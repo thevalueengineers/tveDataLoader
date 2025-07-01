@@ -9,3 +9,5 @@ inst/templates/*_files/
 *.csv
 *.pdf
 *.html
+
+/.quarto/
