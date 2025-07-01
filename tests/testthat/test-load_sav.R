@@ -81,12 +81,19 @@ test_that("Function loads SPSS file and creates column respid if not specified i
                           
   # confirm new variable respid is created as a vector of integers: 1:nrow(loaded$data) labelled 
   # with 'respid' as label.
-  testthat::expect_identical(loaded_data$respid,
+  testthat::expect_identical(loaded_data$loaded_data$respid, 
     labelled::labelled(1:nrow(loaded_data$loaded_data),
-                       label = 'respid')
+      label = 'respid') |> 
+      haven::zap_labels()
   )
 
   # confirm selected variable is set as the key variable
   testthat::expect_true(data.table::key(loaded_data$loaded_data) == 'respid')
+
+  # confirm selected variable is recorded as having variable labels but no value labels
+  testthat::expect_false('respid' %in% loaded_data$no_var_labels$var_name)
+  testthat::expect_true('respid' %in% loaded_data$var_labels$var_name)
+  testthat::expect_true('respid' %in% loaded_data$var_labels$var_label)
+  testthat::expect_true('respid' %in% loaded_data$no_val_labels$var_name)
 
 })
